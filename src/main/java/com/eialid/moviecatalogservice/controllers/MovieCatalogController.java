@@ -5,6 +5,7 @@ import com.eialid.moviecatalogservice.models.UserRatings;
 import com.eialid.moviecatalogservice.services.MovieInfo;
 import com.eialid.moviecatalogservice.services.UserRatingsInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,15 +37,17 @@ public class MovieCatalogController {
 
         return ratings.getUserRatings().stream().map(rating -> movieInfo.getMovie(rating)).collect(Collectors.toList());
 
-           /* Movie movie = webClientBuilder.build() // webClient build method is implemented to get webCLient object
-                    .get()                         // mentioning whether it is get or post
-                    .uri("http://localhost:8082/movies/" + rating.getMovieId())  // passing the uri from which it connects
-                    .retrieve()                     // retrieve all the data that it gets
-                    .bodyToMono(Movie.class)        // and converts it to Movie class type of object, bodyToMono is basically a emptyContainer u can say, it is type of promise where it is written what must be done when it gets the data. I am saying inside of this function, please convert the data to Movie object for me.. it is must for Webclient technique since we are doing asynchronous programming here.
-                    .block();                       // It basically makes object ready and let know to me that it is ready now.  */
-
+           /* Movie movie = webClientBuilder.build()
+                    .get()
+                    .uri("http://localhost:8082/movies/" + rating.getMovieId())
+                    .retrieve()
+                    .bodyToMono(Movie.class)
+                    .block();                       */
 
     }
 
-
+    @GetMapping("/dockerMessages")
+    public String getMessage() {
+        return "Hello from Docker!";
+    }
 }
